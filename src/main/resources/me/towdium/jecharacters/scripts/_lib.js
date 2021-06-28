@@ -46,6 +46,22 @@ var transContains = function (method) {
         'contains',
         '(Ljava/lang/String;Ljava/lang/CharSequence;)Z'
     );
+    transInvoke(method,
+        'kotlin/text/StringsKt',
+        'contains',
+        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Z)Z',
+        'me/towdium/jecharacters/utils/Match',
+        'contains',
+        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Z)Z'
+    );
+    transInvoke(method,
+        'kotlin/text/StringsKt',
+        'contains',
+        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence)Z',
+        'me/towdium/jecharacters/utils/Match',
+        'contains',
+        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence)Z'
+    );
     return method;
 };
 
@@ -73,26 +89,6 @@ var transRegExp = function (method) {
         'me/towdium/jecharacters/utils/Match',
         'matches',
         '(Ljava/lang/String;Ljava/lang/String;)Z'
-    );
-    return method;
-};
-
-var transStrsKt = function (method) {
-    transInvoke(method,
-        'kotlin/text/StringsKt',
-        'contains',
-        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Z)Z',
-        'me/towdium/jecharacters/utils/Match',
-        'contains',
-        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Z)Z'
-    );
-    transInvoke(method,
-        'kotlin/text/StringsKt',
-        'contains',
-        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence)Z',
-        'me/towdium/jecharacters/utils/Match',
-        'contains',
-        '(Ljava/lang/CharSequence;Ljava/lang/CharSequence)Z'
     );
     return method;
 };

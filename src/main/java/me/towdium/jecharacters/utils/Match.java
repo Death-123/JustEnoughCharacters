@@ -30,26 +30,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class Match {
-    public static final PinIn context = new PinIn(new DictLoader.Default() {
-        @Override
-        public void load(BiConsumer<Character, String[]> feed) {
-            super.load(feed);
-            feed.accept('\u9FCF', new String[]{"mai4"});   // 钅麦
-            feed.accept('\u9FD4', new String[]{"ge1"});    // 钅哥
-            feed.accept('\u9FED', new String[]{"ni3"});    // 钅尔
-            feed.accept('\u9FEC', new String[]{"tian2"});  // 石田
-            feed.accept('\u9FEB', new String[]{"ao4"});    // 奥气
-            feed.accept('\uE900', new String[]{"lu2"});    // 钅卢
-            feed.accept('\uE901', new String[]{"du4"});    // 钅杜
-            feed.accept('\uE902', new String[]{"xi3"});    // 钅喜
-            feed.accept('\uE903', new String[]{"bo1"});    // 钅波
-            feed.accept('\uE904', new String[]{"hei1"});   // 钅黑
-            feed.accept('\uE906', new String[]{"da2"});    // 钅达
-            feed.accept('\uE907', new String[]{"lun2"});   // 钅仑
-            feed.accept('\uE910', new String[]{"fu1"});    // 钅夫
-            feed.accept('\uE912', new String[]{"li4"});    // 钅立
-        }
-    }).config().accelerate(true).commit();
+    public static final PinIn context = new PinIn(new Loader()).config().accelerate(true).commit();
     static final Pattern p = Pattern.compile("a");
     static Set<TreeSearcher<?>> searchers = Collections.newSetFromMap(new WeakHashMap<>());
 
@@ -167,6 +148,27 @@ public class Match {
             if (JechConfig.enableVerbose.get())
                 JustEnoughCharacters.logger.info("FakeArray:search(" + k + ')');
             return tree.search(k);
+        }
+    }
+
+    static class Loader extends DictLoader.Default {
+        @Override
+        public void load(BiConsumer<Character, String[]> feed) {
+            super.load(feed);
+            feed.accept('\u9FCF', new String[]{"mai4"});   // 钅麦
+            feed.accept('\u9FD4', new String[]{"ge1"});    // 钅哥
+            feed.accept('\u9FED', new String[]{"ni3"});    // 钅尔
+            feed.accept('\u9FEC', new String[]{"tian2"});  // 石田
+            feed.accept('\u9FEB', new String[]{"ao4"});    // 奥气
+            feed.accept('\uE900', new String[]{"lu2"});    // 钅卢
+            feed.accept('\uE901', new String[]{"du4"});    // 钅杜
+            feed.accept('\uE902', new String[]{"xi3"});    // 钅喜
+            feed.accept('\uE903', new String[]{"bo1"});    // 钅波
+            feed.accept('\uE904', new String[]{"hei1"});   // 钅黑
+            feed.accept('\uE906', new String[]{"da2"});    // 钅达
+            feed.accept('\uE907', new String[]{"lun2"});   // 钅仑
+            feed.accept('\uE910', new String[]{"fu1"});    // 钅夫
+            feed.accept('\uE912', new String[]{"li4"});    // 钅立
         }
     }
 }
